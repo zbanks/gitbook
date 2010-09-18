@@ -4,13 +4,13 @@
             "user" : "Joe Smith",
             "urlid" : "http://github.com/jsmith/gitbook",
             "localid" : "Joe_Smith",
-            "manifest" : "/friends/Joe_Smith/manifest.data.json"
+            "dir" : "/friends/Joe_Smith"
         },
         {
             "user" : "Tim Jones",
             "urlid" : "http://github.com/tjones/gitbook",
             "localid" : "Tim_Jones",
-            "manifest" : "/friends/Tim_Jones/manifest.data.json"
+            "dir" : "/friends/Tim_Jones"
         }
     ]
 }

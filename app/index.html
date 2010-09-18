@@ -3,9 +3,9 @@
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script type="text/javascript" src="/app/static/jquery-tmpl.js"></script>
+    <script type="text/javascript" src="/app/static/jquery.address.js"></script>
     <script type="text/javascript" src="/app/static/json2.js"></script>
     <script type="text/javascript">
-    
     </script>
     <link rel="stylesheet" href="/app/static/reset.css" />
     <link rel="stylesheet" href="/app/static/960.css" />
@@ -78,7 +78,7 @@
         <div id="friends-pane" class="grid_3 alpha omega">
             <ul>
                 {{each(i, friend) friends }}
-                <li><a href="#friend/${ localid }">${ user }</a></li>
+                <li><a href="#/friend/${ localid }" rel="address:/friend/${ localid }">${ user }</a></li>
                 {{/each}}
             </ul>
         </div>

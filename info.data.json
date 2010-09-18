@@ -1,4 +1,6 @@
 {
     "user" : "Zach Banks",
-    "urlid" : "http://github.com/zbanks/gitbook" 
+    "urlid" : "http://github.com/zbanks/gitbook",
+    "localid" : "me",
+    "dir" : ""
 }
