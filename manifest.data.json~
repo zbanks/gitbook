@@ -1,0 +1,7 @@
+{ dirs : { friends : "friends",
+           media : "media",
+           images : "media/images" }
+  data : { info : "info.data.json",
+           wall : "wall.data.json",
+           friends : "friends/friends.data.json
+           media : "media/media.data.json" }
