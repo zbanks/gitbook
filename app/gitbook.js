@@ -5,7 +5,7 @@ var manifest = {};
 var info = {};
 var wall = {};
 
-$.ajaxSetup({ dataType: "json", processData: false });
+$.ajaxSetup({ processData: false });
 
 function load_manifest(){
     DEBUG("loading manifest");
@@ -14,6 +14,17 @@ function load_manifest(){
         DEBUG("manifest loaded");
         DEBUG(manifest);
         load_info();
+    });
+}
+
+function load_info(){
+    DEBUG("loading info");
+    $.get(manifest.data.info, null, function(data){
+        info = data;
+        DEBUG("info loaded");
+        DEBUG(info);
+        //update_info();
+        load_friends();
     });
 }
 
@@ -32,16 +43,7 @@ function load_wall(){
     });
 }
 
-function load_info(){
-    DEBUG("loading info");
-    $.get(manifest.data.info, null, function(data){
-        info = data;
-        DEBUG("info loaded");
-        DEBUG(info);
-        //update_info();
-        load_friends();
-    });
-}
+
 
 function update_wall(){
     var walldiv = $("div#wall");

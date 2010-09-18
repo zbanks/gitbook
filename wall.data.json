@@ -3,14 +3,12 @@
         {
             "user": "Zach Banks",
             "time": "Fri Sep 17 2010 23:07:08 GMT-0400 (EDT)",
-            "content" : "Hello, this is a test!" ,
-            "comments" : []
+            "content" : "Hello, this is a test!" 
         },
         {
             "user": "Zach Banks",
             "time": "Fri Sep 14 2010 23:07:08 GMT-0400 (EDT)",
-            "content" : "Hello, this is an older test!",
-            "comments" : []
+            "content" : "Hello, this is an older test!"
         } 
     ]
 }

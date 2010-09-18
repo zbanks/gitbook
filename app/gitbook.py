@@ -37,12 +37,13 @@ def run(environ, start_response):
                     print '\n', datasize, data
                     f = open(filename, 'wb'); f.write(data); f.close()
                     m = mimetypes.guess_type(filename)
-                    if m[0] is not None: mtype = m[0]
+                    if filename.endswith('.json'): mtype = 'application/json'
+                    elif m[0] is not None: mtype = m[0]
                 else:
                     f = open(filename); data = f.read(); f.close()
                     m = mimetypes.guess_type(filename)
-                    print m
-                    if m[0] is not None: mtype = m[0]
+                    if filename.endswith('.json'): mtype = 'application/json'
+                    elif m[0] is not None: mtype = m[0]
         except IOError,e:
             data = str(e) + '\n'
             status = "404 Not Found"
