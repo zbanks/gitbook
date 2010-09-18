@@ -330,7 +330,7 @@ if (!this.JSON) {
 // Otherwise, iterate through all of the keys in the object.
 
                 for (k in value) {
-                    if (Object.hasOwnProperty.call(value, k)) {
+                    if (k[0] != "_" && Object.hasOwnProperty.call(value, k)) { //XXX: make _ variables 'local'
                         v = str(k, value);
                         if (v) {
                             partial.push(quote(k) + (gap ? ': ' : ':') + v);

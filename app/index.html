@@ -2,14 +2,14 @@
     <head>
     <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script type="text/javascript" src="/app/jquery-tmpl.js"></script>
-    <script type="text/javascript" src="/app/json2.js"></script>
+    <script type="text/javascript" src="/app/static/jquery-tmpl.js"></script>
+    <script type="text/javascript" src="/app/static/json2.js"></script>
     <script type="text/javascript">
     
     </script>
-    <link rel="stylesheet" href="/app/reset.css" />
-    <link rel="stylesheet" href="/app/960.css" />
-    <link rel="stylesheet" href="/app/text.css" />
+    <link rel="stylesheet" href="/app/static/reset.css" />
+    <link rel="stylesheet" href="/app/static/960.css" />
+    <link rel="stylesheet" href="/app/static/text.css" />
     <style type="text/css">
         a {
             text-decoration: none;
@@ -67,9 +67,22 @@
         <div class="clear"></div>
     </script>
     <script type="text/html" id="info_pane">
-        <div class="info-pane grid_3 alpha omega">
+        <div id="info-pane" class="grid_3 alpha omega">
             <h3><a href="#">${user}</a></h3>
         </div>
+        <div id="friends" class="grid_3 alpha omega">
+        
+        </div>
+    </script>
+    <script type="text/html" id="friends_pane">
+        <div id="friends-pane" class="grid_3 alpha omega">
+            <ul>
+                {{each(i, friend) friends }}
+                <li><a href="#friend/${ localid }">${ user }</a></li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="clear"></div>
     </script>
     </head>
     <body>
@@ -79,6 +92,7 @@
         <div id="container" class="container_12">
             <div id="info" class="grid_3">
                 &nbsp;
+                <div id="friends" class="grid_3 alpha omega"></div>
             </div>
             <div id="wall" class="grid_9">
                 <h2>Wall</h2>
@@ -95,6 +109,6 @@
             </div>
         </div>
         
-        <script type="text/javascript" src="/app/gitbook.js"></script>
+        <script type="text/javascript" src="/app/static/gitbook.js"></script>
     </body>
 </html>
