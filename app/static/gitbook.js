@@ -6,8 +6,8 @@ var $ERROR = function(x){console.log(x);};
 
 $.ajaxSetup({ processData: false });
 
-var me;
 var profiles = {};
+var c_localid = "me";
 
 function Profile(){
     this.dir = "";
@@ -21,6 +21,26 @@ function Profile(){
         this.info = info;
         this.dir = info.dir;
         this.load_manifest();
+    }
+    
+    this.draw = function(){
+        this.display = true;
+        if(!this.manifest){
+            this.load_manifest();
+        }else if(!this.info){
+            this.load_info();
+        }else if(!this.friends){
+            this.draw_info();
+            this.load_friends();
+        }else if(!this.wall){
+            this.draw_info();
+            this.draw_friends();
+            this.load_wall();
+        }else{
+            this.draw_info();
+            this.draw_wall();
+            this.draw_friends();
+        }
     }
     
     this.load_manifest = function(){
@@ -135,7 +155,7 @@ function Profile(){
         
         obj.posts.sort(function(a, b){ return (new Date(b.time)) - (new Date(a.time)); });
         $.post(this.dir + this.manifest.data.wall, JSON.stringify(obj, null, 2));
-        $INFO("updating wall to: " + path);
+        $INFO("updating wall to: " + this.dir + this.manifest.data.wall);
     }
 
     this.draw_wall = function(){
@@ -154,20 +174,20 @@ $(document).ready(function(){
         $.post("http://localhost:8000/wall.data.json", data, console.log);
     }, "text");
     */
-    me = new Profile();
-    me.load_manifest();
+    profiles.me = new Profile();
+    profiles.me.load_manifest();
     
 });
 
 $("div#new-wall-post input:button").click(function(){
     var text = $(this).siblings("textarea").val();
     $(this).siblings("textarea").val("");
-    wall.posts.push({ user : info.user,
-                      time : (new Date()).toUTCString(),
-                      content : text });
+    profiles[c_localid].wall.posts.push({ user : profiles.me.info.user,
+                                           time : (new Date()).toUTCString(),
+                                           content : text });
     
-    update_wall();
-    draw_wall();
+    profiles[c_localid].update_wall();
+    profiles[c_localid].draw_wall();
 });
 
 $.address.change(function(ev){
@@ -175,27 +195,32 @@ $.address.change(function(ev){
     if(pathnames[0] == "friend"){
         var localid = pathnames[1];
         $DEBUG("load friend: " + localid);
-        var fr = get_friend_by_localid(localid);
+        var fr = get_friend_by_localid(profiles.me, localid);
         if(fr){
-            profiles[localid] = new Profile();
-            profiles[localid].load_from_info(fr);
+            c_localid = localid;
+            if(!profiles[localid]){
+                profiles[localid] = new Profile();
+                profiles[localid].load_from_info(fr);
+            }else{
+                profiles[localid].draw();
+            }
         }else{
             $ERROR("friend not found: " + pathnames[1]);
         }
     }
 });
 
-function get_friend_by_localid(localid){
-    // Look up friend info object by 'localid'
+function get_friend_by_localid(profile, localid){
+    // Look up friend (of profile) info object by 'localid'
     
     // Make sure it is not yourself
-    if(localid == "me" || localid == me.info.localid){
+    if(localid == "me"){
         return info;
     }
     
-    for(var i = 0; i < me.friends.friends.length; i++){
-        if(me.friends.friends[i].localid == localid){
-            return me.friends.friends[i];
+    for(var i = 0; i < profile.friends.friends.length; i++){
+        if(profile.friends.friends[i].localid == localid){
+            return profile.friends.friends[i];
         }
     }
     

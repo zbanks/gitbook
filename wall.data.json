@@ -2,6 +2,11 @@
   "posts": [
     {
       "user": "Zach Banks",
+      "time": "Sat, 18 Sep 2010 20:34:55 GMT",
+      "content": "Testing a cross-post. Hey joe!"
+    },
+    {
+      "user": "Zach Banks",
       "time": "Sat, 18 Sep 2010 17:41:35 GMT",
       "content": "Yet another test/"
     },
