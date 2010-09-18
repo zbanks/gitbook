@@ -63,3 +63,13 @@ $(document).ready(function(){
     load_manifest();
 });
 
+$("div#new-wall-post>input:button").click(function(){
+    var text = $(this).siblings("textarea").val();
+    wall.posts.push({ user : info.user,
+                      time : (new Date()).toUTCString(),
+                      content : text });
+    $.post(manifest.data.wall, JSON.stringify(wall));
+    DEBUG("updating wall");
+    update_wall();
+});
+

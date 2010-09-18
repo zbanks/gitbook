@@ -1,0 +1,14 @@
+{
+    friends : [
+        {
+            "user" : "Joe Smith",
+            "urlid" : "http://github.com/jsmith/gitbook",
+            "manifest" : "/friends/Joe_Smith/manifest.data.json"
+        },
+        {
+            "user" : "Tim Jones",
+            "urlid" : "http://github.com/tjones/gitbook",
+            "manifest" : "/friends/Tim_Jones/manifest.data.json"
+        }
+    ]
+}

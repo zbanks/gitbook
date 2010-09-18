@@ -1,0 +1,6 @@
+[submodule "friends/Joe_Smith"]
+	path = friends/Joe_Smith
+	url = /tmp/gitbook-joe/
+[submodule "friends/Tim_Jones"]
+	path = friends/Tim_Jones
+	url = /tmp/gitbook-tim/
