@@ -35,7 +35,13 @@ def run(environ, start_response):
                     datasize = int(environ['CONTENT_LENGTH'])
                     data = environ['wsgi.input'].read(datasize)
                     f = open(filename, 'wb'); f.write(data); f.close()
+                    
+                    # Git update
+                    os.system("bash save.sh")
+                    
                     m = mimetypes.guess_type(filename)
+                    
+                    
                     if filename.endswith('.json'): mtype = 'application/json'
                     elif m[0] is not None: mtype = m[0]
                 else:
