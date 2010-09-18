@@ -6,7 +6,7 @@ import os, os.path, mimetypes, wsgiref.simple_server
 import json
 
 port = 8000  # anything
-root = os.path.expanduser('/tmp/gitbook/') #TODO
+root = os.path.expanduser('/data/prj/gb/gitbook/') #TODO
 
 def makelink(dir, file):
     link = (os.path.join(dir,file))[len(root):]
@@ -34,7 +34,6 @@ def run(environ, start_response):
                 if environ['REQUEST_METHOD'] == 'POST':
                     datasize = int(environ['CONTENT_LENGTH'])
                     data = environ['wsgi.input'].read(datasize)
-                    print '\n', datasize, data
                     f = open(filename, 'wb'); f.write(data); f.close()
                     m = mimetypes.guess_type(filename)
                     if filename.endswith('.json'): mtype = 'application/json'

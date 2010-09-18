@@ -39,17 +39,26 @@ function load_wall(){
         wall = data;
         DEBUG("wall loaded");
         DEBUG(wall);
-        update_wall();
+        draw_wall();
     });
 }
 
+function update_wall(path, obj){
+    path = path || manifest.data.wall;
+    obj = obj || wall;
+    
+    obj.posts.sort(function(a, b){ return (new Date(b.time)) - (new Date(a.time)); });
+    $.post(path, JSON.stringify(obj, null, 2));
+    DEBUG("updating wall to: " + path);
+}
 
 
-function update_wall(){
-    var walldiv = $("div#wall");
+function draw_wall(obj){
+    obj = obj || wall;
+    var walldiv = $("div#wallposts");
     walldiv.html(""); // clear
-    for(var i = 0; i < wall.posts.length; i++){
-        $("#wall_post").render(wall.posts[i]).appendTo(walldiv);
+    for(var i = 0; i < obj.posts.length; i++){
+        $("#wall_post").render(obj.posts[i]).appendTo(walldiv);
     }
 }
 
@@ -63,13 +72,14 @@ $(document).ready(function(){
     load_manifest();
 });
 
-$("div#new-wall-post>input:button").click(function(){
+$("div#new-wall-post input:button").click(function(){
     var text = $(this).siblings("textarea").val();
+    $(this).siblings("textarea").val("");
     wall.posts.push({ user : info.user,
                       time : (new Date()).toUTCString(),
                       content : text });
-    $.post(manifest.data.wall, JSON.stringify(wall));
-    DEBUG("updating wall");
+    
     update_wall();
+    draw_wall();
 });
 

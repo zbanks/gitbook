@@ -52,36 +52,49 @@
     </style>
     <!-- takes a data variable straight from JSON -->
     <script type="text/html" id="wall_post">
-        <div class="wall-post grid_10 push_1">
-            <span class="username grid_5 alpha">
+        <div class="wall-post grid_9 alpha omega">
+            <span class="username grid_4 alpha">
                 <a href="#">${user}</a>
             </span>
             <span class="datestamp grid_5 omega">
                 ${time}
             </span>
             <div class="clear"></div>
-            <div class="posttext grid_10 alpha omega">
+            <div class="posttext grid_9 alpha omega">
                 ${content}
             </div>
         </div>
         <div class="clear"></div>
     </script>
-    
+    <script type="text/html" id="info_pane">
+        <div class="info-pane grid_3 alpha omega">
+            <h3><a href="#">${user}</a></h3>
+        </div>
+    </script>
     </head>
     <body>
         <div id="header" class="container_12">
-            <h2>gitbook<h2>
+            <h1>gitbook</h1>
         </div>
-        <div id="info" class="contaniner_12"></div>
-        <div id="wall" class="container_12">
+        <div id="container" class="container_12">
+            <div id="info" class="grid_3">
+                &nbsp;
+            </div>
+            <div id="wall" class="grid_9">
+                <h2>Wall</h2>
+                <div id="wallposts">
+                
+                </div>
+                <div id="new-wall-post" class="grid_9 alpha omega">
+                    <h3>New post:</h3>
+                    <div class="clear"></div>
+                    <textarea class="grid_9 alpha omega" rows="3"></textarea>
+                    <div class="clear"></div>
+                    <input type="button" value="Save">
+                <div>
+            </div>
         </div>
-        <div id="new-wall-post" class="container_12">
-            New post:
-            <div class="clear"></div>
-            <textarea class="grid_10" rows="3"></textarea>
-            <div class="clear"></div>
-            <input type="button" value="Save">
-        <div>
+        
         <script type="text/javascript" src="/app/gitbook.js"></script>
     </body>
 </html>
