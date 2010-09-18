@@ -5,8 +5,9 @@
 import os, os.path, mimetypes, wsgiref.simple_server
 import json
 
+directory = '/data/prj/gb/gitbook/'
 port = 8000  # anything
-root = os.path.expanduser('/data/prj/gb/gitbook/') #TODO
+root = os.path.expanduser(directory) #TODO
 
 def makelink(dir, file):
     link = (os.path.join(dir,file))[len(root):]
@@ -37,7 +38,7 @@ def run(environ, start_response):
                     f = open(filename, 'wb'); f.write(data); f.close()
                     
                     # Git update
-                    os.system("bash save.sh")
+                    os.system("bash save.sh directory")
                     
                     m = mimetypes.guess_type(filename)
                     

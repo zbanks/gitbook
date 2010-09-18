@@ -1,5 +1,5 @@
 #/bin/bash
-cd ..
+cd $1
 git commit -am "Saved"
 cd friends
 for FR in `ls -d /*`
